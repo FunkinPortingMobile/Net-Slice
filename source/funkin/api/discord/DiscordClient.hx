@@ -5,6 +5,7 @@ import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types.DiscordButton;
 import hxdiscord_rpc.Types.DiscordEventHandlers;
 import hxdiscord_rpc.Types.DiscordRichPresence;
+import hxdiscord_rpc.Types.ActivityType;
 import hxdiscord_rpc.Types.DiscordUser;
 import sys.thread.Thread;
 
@@ -42,7 +43,7 @@ class DiscordClient
   {
     trace(' DISCORD '.bold().bg_blue() + ' Initializing event handlers...');
 
-    handlers = new DiscordEventHandlers();
+    handlers = DiscordEventHandlers.create();
 
     handlers.ready = cpp.Function.fromStaticFunction(onReady);
     handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
@@ -61,7 +62,7 @@ class DiscordClient
 
     @:nullSafety(Off)
     {
-      Discord.Initialize(DISCORD_CLIENT_ID, cpp.RawPointer.addressOf(handlers), false, '');
+      Discord.Initialize(DISCORD_CLIENT_ID, cpp.RawPointer.addressOf(handlers), 0, null);
     }
 
     createDaemon();
@@ -106,10 +107,10 @@ class DiscordClient
   {
     presenceParamsCache = params;
 
-    var presence:DiscordRichPresence = new DiscordRichPresence();
+    var presence:DiscordRichPresence = DiscordRichPresence.create();
 
     // Presence should always be playing the game.
-    presence.type = DiscordActivityType_Playing;
+    presence.activityType = ActivityType.Playing;
 
     // Text when hovering over the large image. We just leave this as the game name.
     presence.largeImageText = "Friday Night Funkin'";
