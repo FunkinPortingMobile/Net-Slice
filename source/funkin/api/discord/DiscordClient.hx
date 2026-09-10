@@ -2,7 +2,6 @@ package funkin.api.discord;
 
 #if FEATURE_DISCORD_RPC
 import hxdiscord_rpc.Discord;
-import hxdiscord_rpc.Types.DiscordButton;
 import hxdiscord_rpc.Types.DiscordEventHandlers;
 import hxdiscord_rpc.Types.DiscordRichPresence;
 import hxdiscord_rpc.Types.ActivityType;
