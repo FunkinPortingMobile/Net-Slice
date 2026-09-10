@@ -136,15 +136,11 @@ class DiscordClient
     // NOTE: In previous versions, this showed as "Elapsed", but now shows as playtime and doesn't look good
     // presence.startTimestamp = time - 10;
 
-    final button1:DiscordButton = new DiscordButton();
-    button1.label = 'Play on Web';
-    button1.url = Constants.URL_NEWGROUNDS;
-    presence.buttons[0] = button1;
+    presence.button1Label = 'Play on Web';
+    presence.button1Url = Constants.URL_NEWGROUNDS;
 
-    final button2:DiscordButton = new DiscordButton();
-    button2.label = 'Download';
-    button2.url = Constants.URL_ITCH;
-    presence.buttons[1] = button2;
+    presence.button2Label = 'Download';
+    presence.button2Url = Constants.URL_ITCH;
 
     Discord.UpdatePresence(cpp.RawConstPointer.addressOf(presence));
   }
